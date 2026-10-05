@@ -1,0 +1,45 @@
+/* The same thing in one line of modern CSS.
+ *
+ * clamp() made the three-media-query dance unnecessary in browsers, which is
+ * worth saying plainly: if you are shipping to the web and your baseline is
+ * 2020 or later, this file is the whole library and you do not need the SCSS
+ * above. The ports in this repo exist because the native platforms have no
+ * clamp() and no rem, not because the technique is hard.
+ *
+ * Derivation, for the 400->800px / 12->24px reference scale:
+ *
+ *   slope      = (24 - 12) / (800 - 400) = 0.03  -> 3vw
+ *   intercept  = 12 - 0.03 * 400         = 0px
+ *   preferred  = 0px + 3vw
+ */
+:root {
+  font-size: clamp(12px, 0px + 3vw, 24px);
+
+  --fluid-ratio: 1.2;
+  --fluid-caption: 0.6944444444rem; /* ratio^-2 */
+  --fluid-small: 0.8333333333rem; /* ratio^-1 */
+  --fluid-body: 1rem; /* ratio^0  */
+  --fluid-h6: 1.2rem; /* ratio^1  */
+  --fluid-h5: 1.44rem; /* ratio^2  */
+  --fluid-h4: 1.728rem; /* ratio^3  */
+  --fluid-h3: 2.0736rem; /* ratio^4  */
+  --fluid-h2: 2.48832rem; /* ratio^5  */
+  --fluid-h1: 2.985984rem; /* ratio^6  */
+}
+
+.caption { font-size: var(--fluid-caption); }
+.small   { font-size: var(--fluid-small); }
+body     { font-size: var(--fluid-body); }
+h6       { font-size: var(--fluid-h6); }
+h5       { font-size: var(--fluid-h5); }
+h4       { font-size: var(--fluid-h4); }
+h3       { font-size: var(--fluid-h3); }
+h2       { font-size: var(--fluid-h2); }
+h1       { font-size: var(--fluid-h1); }
+
+/* Respect the reader. A fluid root that ignores the OS text-size setting is a
+ * regression dressed up as a feature; rem-based sizes inherit it for free, but
+ * only if you do not also pin the root in px for users who have zoomed. */
+@media (prefers-reduced-motion: no-preference) {
+  :root { scroll-behavior: smooth; }
+}

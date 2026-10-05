@@ -1,0 +1,22 @@
+name: fluid_type
+description: >-
+  Viewport-responsive type scales for Flutter. One number drives the whole type
+  hierarchy, interpolating smoothly between a small-screen scale and a
+  large-screen one instead of snapping at breakpoints.
+version: 0.1.0
+repository: https://github.com/FrancisIje/fluid-type
+issue_tracker: https://github.com/FrancisIje/fluid-type/issues
+
+environment:
+  sdk: ^3.0.0
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.9.0
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter

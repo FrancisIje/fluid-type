@@ -1,0 +1,45 @@
+{
+  "name": "@fluid-type/react-native",
+  "version": "0.1.0",
+  "description": "Viewport-responsive type scales for React Native. One number drives the whole type hierarchy.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancisIje/fluid-type.git",
+    "directory": "react-native"
+  },
+  "bugs": "https://github.com/FrancisIje/fluid-type/issues",
+  "keywords": [
+    "react-native",
+    "typography",
+    "type-scale",
+    "fluid-typography",
+    "responsive",
+    "modular-scale"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test test/*.test.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-native": ">=0.68"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-native": "^0.74.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // CommonJS output, because Metro and the wider React Native ecosystem
+    // still assume it. The .ts extensions in source are rewritten to .js here,
+    // which needs TypeScript 5.7 or newer.
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true,
+    "declarationMap": true
+  },
+  "include": ["src"],
+  "exclude": ["test", "example"]
+}

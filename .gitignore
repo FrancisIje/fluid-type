@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+pubspec.lock
+*.iml
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+
+# Gradle / Android
+.gradle/
+local.properties
+.kotlin/
+
+# Swift
+.build/
+.swiftpm/
+*.xcodeproj
+DerivedData/
+
+# Editors
+.idea/
+.vscode/

@@ -1,0 +1,54 @@
+@use 'sass:math';
+
+// The original technique, by Mike Riethmuller.
+// https://codepen.io/MadeByMike/pen/vNrvdZ
+//
+// Kept here as the reference the four ports are measured against. The idea is
+// that the root font size interpolates linearly between two viewport widths and
+// is clamped outside them, so every rem-based size in the document scales with
+// the viewport without a single media-query step.
+
+// The viewport range over which type scales.
+$min_width: 400;
+$max_width: 800;
+
+// The root font size at each end of that range. Headings and everything else
+// expressed in rem scale proportionally.
+$min_font: 12;
+$max_font: 24;
+
+:root {
+  font-size: #{$min_font}px;
+}
+
+@media (min-width: #{$min_width}px) and (max-width: #{$max_width}px) {
+  :root {
+    font-size: calc(
+      #{$min_font}px + (#{$max_font} - #{$min_font}) *
+        ((100vw - #{$min_width}px) / (#{$max_width} - #{$min_width}))
+    );
+  }
+}
+
+@media (min-width: #{$max_width}px) {
+  :root {
+    font-size: #{$max_font}px;
+  }
+}
+
+// A modular scale on top of the fluid root, matching FluidTypeRole in the ports.
+$ratio: 1.2;
+
+@function step($n) {
+  @return #{math.pow($ratio, $n)}rem;
+}
+
+.caption { font-size: step(-2); }
+.small   { font-size: step(-1); }
+.body    { font-size: step(0); }
+h6       { font-size: step(1); }
+h5       { font-size: step(2); }
+h4       { font-size: step(3); }
+h3       { font-size: step(4); }
+h2       { font-size: step(5); }
+h1       { font-size: step(6); }
